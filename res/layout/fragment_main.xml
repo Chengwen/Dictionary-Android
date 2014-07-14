@@ -42,16 +42,32 @@
         android:layout_below="@+id/linearLayout1"
         >
 
+
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/searchinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/linearLayout1"
-        android:ems="10" >
+        android:ems="10"
+        android:singleLine="true" >
 
         <requestFocus />
     </EditText>
-
+    
+	<Button
+	    android:id="@+id/searchbutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Search" 
+	    
+        android:onClick="onSearchClick" />
     </LinearLayout>
+
+    <WebView
+        android:id="@+id/webView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout2" />
+
 </RelativeLayout>
