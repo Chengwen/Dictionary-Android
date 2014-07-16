@@ -1,24 +1,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d9d9d9"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
-    
-     <EditText
-         android:id="@+id/edit_message"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:background="@layout/rounded_editview"
-         android:hint="edit_message"
-         android:maxLines="1" />
-     
-     <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:text="Button" />
-     
+        android:background="#d9d9d9"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp" >
+
+        <SearchView
+            android:id="@+id/searchView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@layout/rounded_editview"
+            android:queryHint="search dictionary" >
+
+        </SearchView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Button" />
+
+    </LinearLayout>
+    
+    <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 </LinearLayout>
