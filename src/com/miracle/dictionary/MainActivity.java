@@ -73,6 +73,11 @@ public class MainActivity extends Activity {
 
 
     public void onSearchClick(View view) {
+
+        Dict d=new Dict();
+        d.openDict("Sample.miracledict",this);
+        d.searchTips("lov");
+        
     	//ªÒ»°±‡º≠øÚ÷µ
         EditText myTextBox = (EditText) findViewById(R.id.searchinput);
         String s=myTextBox.getText().toString();
