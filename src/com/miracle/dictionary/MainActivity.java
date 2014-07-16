@@ -4,6 +4,8 @@ package com.miracle.dictionary;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.os.Build;
@@ -34,8 +37,7 @@ public class MainActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-
-        
+      
         
 /*
         
@@ -91,6 +93,7 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+        
     }
 
     @Override
@@ -103,6 +106,7 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+        
     }
 
     /**
