@@ -79,12 +79,12 @@ public class MainActivity extends Activity {
         Dict d=new Dict();
         d.openDict("Sample.miracledict",this);
         d.searchTips("lov");
-        
+        /*
     	//ªÒ»°±‡º≠øÚ÷µ
         EditText myTextBox = (EditText) findViewById(R.id.searchinput);
         String s=myTextBox.getText().toString();
         WebView webView1 = (WebView) findViewById(R.id.webView1);
-    	webView1.loadUrl("http://www.oldict.com/"+s+"/");
+    	webView1.loadUrl("http://www.oldict.com/"+s+"/");*/
    	 }
     
     @Override
