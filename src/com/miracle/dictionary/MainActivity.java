@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -38,6 +40,7 @@ public class MainActivity extends Activity {
                     .commit();
         }
       
+
         
 /*
         
@@ -76,6 +79,16 @@ public class MainActivity extends Activity {
 
     public void onSearchClick(View view) {
 
+        //获取布局文件中的两个控件对象
+        AutoCompleteTextView autotext=(AutoCompleteTextView)findViewById(R.id.autotext);      
+        
+        //设置数据源
+        String[] autoStrings=new String[]{"New York","Tokyo","beijing","london","Seoul Special","Los Angeles"};
+        //设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
+android.R.layout.simple_dropdown_item_1line, autoStrings);
+        //设置AutoCompleteTextView的Adapter
+        autotext.setAdapter(adapter);
         Dict d=new Dict();
         d.openDict("Sample.miracledict",this);
         d.searchTips("lov");

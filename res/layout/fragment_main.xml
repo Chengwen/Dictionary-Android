@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@layout/rounded_editview"
             android:queryHint="search dictionary" >
 
         </SearchView>
 
+           <!-- android:background="@layout/rounded_editview" -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,9 +32,12 @@
 
     </LinearLayout>
     
-    <ListView
-            android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        <AutoCompleteTextView
+            android:id="@+id/autotext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionHint="Famous Citi"
+            android:completionThreshold="1"
+            android:imeOptions="actionSearch" />
+
 </LinearLayout>
