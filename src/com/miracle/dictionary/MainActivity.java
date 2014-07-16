@@ -72,13 +72,13 @@ public class MainActivity extends Activity {
     }
 
 
-    public void onSearchClick(View view) {
+    /*public void onSearchClick(View view) {
     	//ªÒ»°±‡º≠øÚ÷µ
         EditText myTextBox = (EditText) findViewById(R.id.searchinput);
         String s=myTextBox.getText().toString();
         WebView webView1 = (WebView) findViewById(R.id.webView1);
     	webView1.loadUrl("http://www.oldict.com/"+s+"/");
-   	 }
+   	 }*/
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

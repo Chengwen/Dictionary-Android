@@ -28,20 +28,16 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int button1=0x7f090003;
+        public static final int action_settings=0x7f090003;
+        public static final int autoCompleteTextView1=0x7f090002;
         public static final int container=0x7f090000;
-        public static final int language1=0x7f090002;
-        public static final int language2=0x7f090004;
-        public static final int linearLayout1=0x7f090001;
-        public static final int linearLayout2=0x7f090005;
-        public static final int searchbutton=0x7f090007;
-        public static final int searchinput=0x7f090006;
-        public static final int webView1=0x7f090008;
+        public static final int edit_message=0x7f090001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int fragment_main=0x7f030001;
+        public static final int rounded_editview=0x7f030002;
+        public static final int search_result=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;
