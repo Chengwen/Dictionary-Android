@@ -52,18 +52,12 @@ public class Dict
 	 * @ordered
 	 */
 	
-	public List<SingleWord> searchTips(String word) {
+	public List<String> searchTips(String word) {
 
-		ArrayList<SingleWord> words = new ArrayList<SingleWord>();
-		Cursor c = db.rawQuery("SELECT * FROM Words where word like '"+word+"%'", null);
+		ArrayList<String> words = new ArrayList<String>();
+		Cursor c = db.rawQuery("SELECT word FROM Words where word like '"+word+"%'", null);
         while (c.moveToNext()) {
-        	SingleWord singleword = new SingleWord();
-        	singleword.id = c.getInt(c.getColumnIndex("id"));
-        	singleword.dictinfoid = c.getInt(c.getColumnIndex("dictinfoid"));
-        	singleword.word = c.getString(c.getColumnIndex("word"));
-        	singleword.content = c.getString(c.getColumnIndex("content"));
-        	Log.d("test", singleword.word);//debug output
-        	words.add(singleword);
+        	words.add(c.getString(c.getColumnIndex("word")));
         }
         c.close();
         return words; 

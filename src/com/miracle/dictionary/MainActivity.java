@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,32 +30,64 @@ import android.widget.TextView.OnEditorActionListener;
 import android.os.Build;
 
 public class MainActivity extends Activity {
-	
-	 private AutoCompleteTextView autotext;
+
+ 	private  AutoCompleteTextView autotext;
+ 	  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
+
+
       //获取布局文件中的两个控件对象
-        autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
-     
-        //设置数据源
-        String[] autoStrings=new String[]{"New York","Tokyo","beijing","london","Seoul Special","Los Angeles"};
-        //设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
-android.R.layout.simple_dropdown_item_1line, autoStrings);
-        //设置AutoCompleteTextView的Adapter
-        autotext.setAdapter(adapter);
-       
+      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+   	  autotext.addTextChangedListener(new TextWatcher() {         
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+        	
+        	  
+        	Log.i("test", "textchage");
+      		String contentStr = s.toString(); 
+      		
+      		if (contentStr == null || contentStr.length() <= 0)//判断contentStr是否为空,判断字符串是否为空典型写法
+      		{
+      			Log.i("zhangya", "afterTextChanged null");
+
+      		} else
+      		{
+
+                //设置数据源
+                //String[] autoStrings=new String[]{"New York","Tokyo","beijing","london","Seoul Special","Los Angeles"};
+                
+
+      	        Dict d=new Dict();
+      	        d.openDict("Sample.miracledict",MainActivity.this);
+      	       
+      			//设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
+                ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
+        android.R.layout.simple_dropdown_item_1line,  d.searchTips(contentStr));
+                //设置AutoCompleteTextView的Adapter
+                autotext.setAdapter(adapter);
+               
+      		}
+      		
+          }
+
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count,
+                  int after) {                
+
+          }
+
+          @Override
+          public void afterTextChanged(Editable s) {
+
+          }
+      });
       
-
+       
         
 /*
         
@@ -91,21 +124,9 @@ android.R.layout.simple_dropdown_item_1line, autoStrings);
     }
 
 
+	
     public void onSearchClick(View view) {
 
-        //获取布局文件中的两个控件对象
-        AutoCompleteTextView autotext=(AutoCompleteTextView)findViewById(R.id.autotext);      
-        
-        //设置数据源
-        String[] autoStrings=new String[]{"New York","Tokyo","beijing","london","Seoul Special","Los Angeles"};
-        //设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
-android.R.layout.simple_dropdown_item_1line, autoStrings);
-        //设置AutoCompleteTextView的Adapter
-        autotext.setAdapter(adapter);
-        Dict d=new Dict();
-        d.openDict("Sample.miracledict",this);
-        d.searchTips("lov");
         /*
     	//获取编辑框值
         EditText myTextBox = (EditText) findViewById(R.id.searchinput);
@@ -144,13 +165,6 @@ android.R.layout.simple_dropdown_item_1line, autoStrings);
         public PlaceholderFragment() {
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            
-            return rootView;
-        }
     }
 
 }
