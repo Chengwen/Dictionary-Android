@@ -79,6 +79,70 @@ public class Dict
         }
         c.close();
         return null;
+/*
+        
+        EditText myTextBox = (EditText) findViewById(R.id.searchinput);
+        myTextBox.setOnEditorActionListener(new OnEditorActionListener()
+        {
+			@Override
+			public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+        });
+        myTextBox.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        }); 
+        myTextBox.addTextChangedListener(new TextWatcher() {
+         public void afterTextChanged(Editable s) {
+         }
+       
+         public void beforeTextChanged(CharSequence s, int start, 
+           int count, int after) {
+         }
+       
+         public void onTextChanged(CharSequence s, int start, 
+           int before, int count) {
+            // WebView webView1 = (WebView) findViewById(R.id.webView1);
+        	// webView1.loadUrl("http://www.oldict.com/"+s+"/");
+         }
+        });*/
+
+/*
+        
+        EditText myTextBox = (EditText) findViewById(R.id.searchinput);
+        myTextBox.setOnEditorActionListener(new OnEditorActionListener()
+        {
+			@Override
+			public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+        });
+        myTextBox.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        }); 
+        myTextBox.addTextChangedListener(new TextWatcher() {
+         public void afterTextChanged(Editable s) {
+         }
+       
+         public void beforeTextChanged(CharSequence s, int start, 
+           int count, int after) {
+         }
+       
+         public void onTextChanged(CharSequence s, int start, 
+           int before, int count) {
+            // WebView webView1 = (WebView) findViewById(R.id.webView1);
+        	// webView1.loadUrl("http://www.oldict.com/"+s+"/");
+         }
+        });*/
+       
 	}
 	
 	/**

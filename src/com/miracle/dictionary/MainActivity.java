@@ -36,12 +36,15 @@ import android.os.Build;
 public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
- 	  
+ 	private Dict d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        d=new Dict();
+	    d.openDict("Sample.miracledict", MainActivity.this);
+	        
 	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
             public void onItemClick(AdapterView<?> parent, View view,  
@@ -87,9 +90,6 @@ public class MainActivity extends Activity {
                 //String[] autoStrings=new String[]{"New York","Tokyo","beijing","london","Seoul Special","Los Angeles"};
                 
 
-      	        Dict d=new Dict();
-      	        d.openDict("Sample.miracledict", MainActivity.this);
-      	       
       			//设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
         android.R.layout.simple_dropdown_item_1line,  d.searchTips(contentStr));
@@ -112,60 +112,25 @@ public class MainActivity extends Activity {
           }
       });
    	
-/*
-        
-        EditText myTextBox = (EditText) findViewById(R.id.searchinput);
-        myTextBox.setOnEditorActionListener(new OnEditorActionListener()
-        {
-			@Override
-			public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-        });
-        myTextBox.addTextChangedListener(new TextWatcher(){
-            public void afterTextChanged(Editable s) {
-            }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
-        }); 
-        myTextBox.addTextChangedListener(new TextWatcher() {
-         public void afterTextChanged(Editable s) {
-         }
-       
-         public void beforeTextChanged(CharSequence s, int start, 
-           int count, int after) {
-         }
-       
-         public void onTextChanged(CharSequence s, int start, 
-           int before, int count) {
-            // WebView webView1 = (WebView) findViewById(R.id.webView1);
-        	// webView1.loadUrl("http://www.oldict.com/"+s+"/");
-         }
-        });*/
-       
     }
 
 
     private void onSearch(String word)
     {
-  	  
+  		TextView text= (TextView) findViewById(R.id.searchResult);
+
+        SingleWord w=d.getWord(word);
+        if(w==null)
+        {
+        	text.setText(R.string.word_not_find);
+        }
+        else
+        {
+        	text.setText(w.content);
+        }
     }
       
 	
-    public void onSearchClick(View view) {
-
-        /*
-    	//获取编辑框值
-        EditText myTextBox = (EditText) findViewById(R.id.searchinput);
-        String s=myTextBox.getText().toString();
-        WebView webView1 = (WebView) findViewById(R.id.webView1);
-    	webView1.loadUrl("http://www.oldict.com/"+s+"/");*/
-    	
-    	
-    	
-   	 }
-    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
