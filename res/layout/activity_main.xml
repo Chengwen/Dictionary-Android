@@ -13,15 +13,20 @@
         android:orientation="horizontal"
         android:paddingLeft="10dp" >
 
-        <SearchView
-            android:id="@+id/searchView1"
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/autotext"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </SearchView>
+            android:layout_weight="1"
+            android:background="@layout/rounded_editview"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="@string/search_dictionary"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
            <!-- android:background="@layout/rounded_editview" -->
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,16 +36,17 @@
             android:text="Button" />
 
     </LinearLayout>
-    
-       <AutoCompleteTextView
-           android:id="@+id/autotext"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:completionHint="Famous Citi"
-           android:completionThreshold="1"
-           android:hint="input"
-           android:imeOptions="actionSearch"
-           android:inputType="text"
-            android:queryHint="@string/search_dictionary"  />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
            
 </LinearLayout>

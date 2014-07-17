@@ -18,12 +18,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -38,12 +42,33 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-      //获取布局文件中的两个控件对象
-      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
-
-   	  autotext.addTextChangedListener(new TextWatcher() {         
+	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
+	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
+            public void onItemClick(AdapterView<?> parent, View view,  
+                int position, long id) {  
+            	/*
+                ListView listview = (ListView) parent;  
+                ArrayAdapter<String> adapter  =  (ArrayAdapter<String>) parent.getAdapter();  
+                TextView textview = (TextView) view;  */
+            	String select=autotext.getText().toString();
+            	onSearch(select);
+            	Log.d("select",select);
+            }});  
+	      
+	      autotext.setOnEditorActionListener(new OnEditorActionListener() {
+	    	    @Override
+	    	    public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+	    	        // TODO Auto-generated method stub
+	    	        if (arg1 == EditorInfo.IME_ACTION_SEARCH) {
+	    	            // search pressed and perform your functionality.
+	                	String select=autotext.getText().toString();
+	                	onSearch(select);
+	    	        }
+	    	        return false;
+	    	    }
+	    	});
+	      
+	   	  autotext.addTextChangedListener(new TextWatcher() {         
           @Override
           public void onTextChanged(CharSequence s, int start, int before, int count) {
         	
@@ -63,7 +88,7 @@ public class MainActivity extends Activity {
                 
 
       	        Dict d=new Dict();
-      	        d.openDict("Sample.miracledict",MainActivity.this);
+      	        d.openDict("Sample.miracledict", MainActivity.this);
       	       
       			//设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
@@ -86,9 +111,7 @@ public class MainActivity extends Activity {
 
           }
       });
-      
-       
-        
+   	
 /*
         
         EditText myTextBox = (EditText) findViewById(R.id.searchinput);
@@ -124,6 +147,11 @@ public class MainActivity extends Activity {
     }
 
 
+    private void onSearch(String word)
+    {
+  	  
+    }
+      
 	
     public void onSearchClick(View view) {
 
@@ -133,6 +161,9 @@ public class MainActivity extends Activity {
         String s=myTextBox.getText().toString();
         WebView webView1 = (WebView) findViewById(R.id.webView1);
     	webView1.loadUrl("http://www.oldict.com/"+s+"/");*/
+    	
+    	
+    	
    	 }
     
     @Override

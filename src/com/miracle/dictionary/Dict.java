@@ -62,19 +62,12 @@ public class Dict
         c.close();
         return words; 
 	}
-	
-	/**
-	 * get word&nbsp;explanation
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
+
 	
 	public SingleWord getWord(String word) {
 
     	SingleWord singleword = new SingleWord();
-		Cursor c = db.rawQuery("SELECT * FROM Words where word='"+word+"' Limit 1", null);
+		Cursor c = db.rawQuery("SELECT * FROM Words where word='"+ word +"' Limit 1", null);
         while (c.moveToNext()) {
         	singleword.id = c.getInt(c.getColumnIndex("id"));
         	singleword.dictinfoid = c.getInt(c.getColumnIndex("dictinfoid"));
