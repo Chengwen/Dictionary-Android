@@ -36,8 +36,9 @@ import android.os.Build;
 public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
+ 	private Button cancel;
+ 	
  	private Dict d;
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -54,6 +55,7 @@ public class MainActivity extends Activity {
                 ArrayAdapter<String> adapter  =  (ArrayAdapter<String>) parent.getAdapter();  
                 TextView textview = (TextView) view;  */
             	String select=autotext.getText().toString();
+           
             	onSearch(select);
             	Log.d("select",select);
             }});  
@@ -111,6 +113,19 @@ public class MainActivity extends Activity {
 
           }
       });
+	   	  
+	   	  
+	   	cancel =(Button) findViewById(R.id.cancel);
+	   
+	    cancel.setOnClickListener(new Button.OnClickListener()
+	    {
+	      @Override
+	      public void onClick(View v)
+	      {
+	        // TODO Auto-generated method stub
+	        autotext.setText("");            //按钮按下的处理部分
+	      }
+	    });
    	
     }
 
@@ -118,7 +133,9 @@ public class MainActivity extends Activity {
     private void onSearch(String word)
     {
   		TextView text= (TextView) findViewById(R.id.searchResult);
-
+  	
+  		text.setVisibility(View.VISIBLE); 
+    	
         SingleWord w=d.getWord(word);
         if(w==null)
         {
