@@ -37,20 +37,20 @@ public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
  	private Button cancel;
- 	
+ 	 
  	private Dict d;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         d=new Dict();
-	    d.openDict("Sample.miracledict", MainActivity.this);
+	    d.openDict("fren.miracledict", MainActivity.this);
 	        
 	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
             public void onItemClick(AdapterView<?> parent, View view,  
                 int position, long id) {  
-            	/*
+            	/* 
                 ListView listview = (ListView) parent;  
                 ArrayAdapter<String> adapter  =  (ArrayAdapter<String>) parent.getAdapter();  
                 TextView textview = (TextView) view;  */
