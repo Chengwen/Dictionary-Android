@@ -19,6 +19,8 @@ public class Dict
 {
 	private DBHelper helper;
 	private SQLiteDatabase db;
+	private Context context=null;
+	private String currOpen=null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -52,8 +54,8 @@ public class Dict
 	 * @ordered
 	 */
 	
-	public List<String> searchTips(String word) {
-
+	public List<String> searchTips(String dict,String word) {
+		openDict(dict);
 		ArrayList<String> words = new ArrayList<String>();
 		Cursor c = db.rawQuery("SELECT word FROM Words where word like '"+word+"%'", null);
         while (c.moveToNext()) {
@@ -64,8 +66,8 @@ public class Dict
 	}
 
 	
-	public SingleWord getWord(String word) {
-
+	public SingleWord getWord(String dict,String word) {
+		openDict(dict);
     	SingleWord singleword = new SingleWord();
 		Cursor c = db.rawQuery("SELECT * FROM Words where word='"+ word +"' Limit 1", null);
         while (c.moveToNext()) {
@@ -162,9 +164,23 @@ public class Dict
 	 * @generated
 	 * @ordered
 	 */
-	
+
 	public boolean openDict(String dictfilename,Context context) {
+		if(currOpen==dictfilename)
+			return true;
+		this.context=context;
 		helper = new DBHelper(context,dictfilename);
+		currOpen=dictfilename;
+		//因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0, mFactory);
+		//所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里
+		db = helper.getWritableDatabase();
+		return true;	
+	}
+	public boolean openDict(String dictfilename) {
+		if(currOpen==dictfilename)
+			return true;
+		helper = new DBHelper(this.context,dictfilename);
+		currOpen=dictfilename;
 		//因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0, mFactory);
 		//所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里
 		db = helper.getWritableDatabase();
@@ -180,6 +196,7 @@ public class Dict
 	
 	public boolean closeDict() {
 		// TODO implement me
+		currOpen=null;
 		return false;	
 	}
 	
