@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         d=new Dict();
-	    d.openDict("fren.miracledict", MainActivity.this);
+	    d.openDict("521_en_fr.miracledict", MainActivity.this);
 	        
 	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
