@@ -150,7 +150,10 @@ public class MainActivity extends Activity {
     	for(int i=0;i<dictlists.length;i++)
     	{
     		SingleWord w=d.getWord(dictlists[i],word);
-    		wordOutput+=w.content+"\r\n\r\n";
+    		if(w!=null)
+    		{
+    			wordOutput+=w.content+"\r\n\r\n";
+    		}
     	}
         
         if(wordOutput.isEmpty())
