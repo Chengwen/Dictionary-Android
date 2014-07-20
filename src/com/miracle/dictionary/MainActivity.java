@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -43,6 +44,8 @@ public class MainActivity extends Activity {
  	private String maindict;//main dict database
  	private Dict d;
     protected void onCreate(Bundle savedInstanceState) {
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -142,8 +145,10 @@ public class MainActivity extends Activity {
 
     private void onSearch(String word)
     {
-  		TextView text= (TextView) findViewById(R.id.searchResult);
-  	
+    	TextView text1= (TextView) findViewById(R.id.searchWord);
+  		text1.setVisibility(View.VISIBLE); 
+  		text1.setText(word);
+    	TextView text= (TextView) findViewById(R.id.searchResult);
   		text.setVisibility(View.VISIBLE); 
   		
     	String wordOutput="";
