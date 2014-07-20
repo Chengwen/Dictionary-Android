@@ -22,7 +22,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
-import android.webkit.WebView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -40,8 +40,6 @@ public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
  	private Button cancel;
- 	private String[] dictlists;//all dict database
- 	private String maindict;//main dict database
  	private Dict d;
     protected void onCreate(Bundle savedInstanceState) {
         //Remove title bar
@@ -49,16 +47,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-        	dictlists=this.getAssets().list("databases");
-        	maindict=dictlists[0];
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
         
         d=new Dict();
-	    d.openDict(maindict, MainActivity.this);
-	        
+	    d.openDict(this);
 	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
             public void onItemClick(AdapterView<?> parent, View view,  
@@ -76,8 +67,12 @@ public class MainActivity extends Activity {
 	      autotext.setOnEditorActionListener(new OnEditorActionListener() {
 	    	    @Override
 	    	    public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+	    	    	
+
 	    	        // TODO Auto-generated method stub
 	    	        if (arg1 == EditorInfo.IME_ACTION_SEARCH) {
+		    	        
+		    	        
 	    	            // search pressed and perform your functionality.
 	                	String select=autotext.getText().toString();
 	                	onSearch(select);
@@ -107,7 +102,7 @@ public class MainActivity extends Activity {
 
       			//设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
-        android.R.layout.simple_dropdown_item_1line,  d.searchTips(maindict,contentStr));
+        android.R.layout.simple_dropdown_item_1line,  d.searchTips(contentStr));
                 //设置AutoCompleteTextView的Adapter
                 autotext.setAdapter(adapter);
                
@@ -145,21 +140,21 @@ public class MainActivity extends Activity {
 
     private void onSearch(String word)
     {
+    	
     	TextView text1= (TextView) findViewById(R.id.searchWord);
   		text1.setVisibility(View.VISIBLE); 
   		text1.setText(word);
     	TextView text= (TextView) findViewById(R.id.searchResult);
   		text.setVisibility(View.VISIBLE); 
-  		
-    	String wordOutput="";
-    	for(int i=0;i<dictlists.length;i++)
-    	{
-    		SingleWord w=d.getWord(dictlists[i],word);
-    		if(w!=null)
-    		{
-    			wordOutput+=w.content+"\r\n\r\n";
-    		}
-    	}
+
+    	//hide inupt
+    	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);  
+        imm.hideSoftInputFromWindow(text1.getWindowToken(), 0);
+        
+	    autotext.dismissDropDown();
+        
+        
+    	String wordOutput=d.getWord(word);
         
         if(wordOutput.isEmpty())
         {
