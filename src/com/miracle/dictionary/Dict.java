@@ -2,14 +2,11 @@ package com.miracle.dictionary;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.AutoCompleteTextView;
 
 
 /**
@@ -20,7 +17,7 @@ import android.widget.AutoCompleteTextView;
 
 public class Dict
 {
-	private DBHelper helper;
+	private com.miracle.dictionary.DBHelper helper;
 	private SQLiteDatabase db;
 	private Context context=null;
 	private String currOpen=null;
@@ -155,7 +152,7 @@ public class Dict
 	public boolean openDict(String dictfilename) {
 		if(currOpen==dictfilename)
 			return true;
-		helper = new DBHelper(this.context,dictfilename);
+		helper = new com.miracle.dictionary.DBHelper(this.context,dictfilename);
 		currOpen=dictfilename;
 		//因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0, mFactory);
 		//所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里

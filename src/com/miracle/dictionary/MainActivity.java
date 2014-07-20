@@ -1,25 +1,17 @@
 package com.miracle.dictionary;
 
 
-import java.io.IOException;
-
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -27,20 +19,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.MultiAutoCompleteTextView;
-import android.widget.ScrollView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.os.Build;
 
 public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
  	private Button cancel;
- 	private Dict d;
+ 	private com.miracle.dictionary.Dict d;
     protected void onCreate(Bundle savedInstanceState) {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
