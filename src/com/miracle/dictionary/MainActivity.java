@@ -1,6 +1,8 @@
 package com.miracle.dictionary;
 
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -123,6 +125,19 @@ public class MainActivity extends Activity {
    	
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+       // The rest of your onStart() code.
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+      }
+
+      @Override
+      public void onStop() {
+        super.onStop();
+       // The rest of your onStop() code.
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+      }
 
     private void onSearch(String word)
     {

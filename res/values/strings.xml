@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Dictionary</string>
+    <string name="app_name">English-French Dictonary</string>
     <string name="action_settings">Settings</string>
     <string name="search_dictionary">Search Dictionary</string>
     <string name="word_not_find">Word not find</string>

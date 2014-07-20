@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Français-Anglais Dictionnaire</string>
+    <string name="action_settings">paramètres</string>
+    <string name="search_dictionary">Recherche Dictionnaire</string>
+    <string name="word_not_find">Parole pas trouvé</string>
+    <string name="cancel">annuler</string>
+     
+
+</resources>
