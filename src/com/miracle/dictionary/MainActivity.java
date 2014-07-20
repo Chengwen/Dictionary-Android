@@ -1,6 +1,8 @@
 package com.miracle.dictionary;
 
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -37,14 +39,22 @@ public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
  	private Button cancel;
- 	 
+ 	private String[] dictlists;//all dict database
+ 	private String maindict;//main dict database
  	private Dict d;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+        	dictlists=this.getAssets().list("databases");
+        	maindict=dictlists[0];
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
         d=new Dict();
-	    d.openDict("fren.miracledict", MainActivity.this);
+	    d.openDict(maindict, MainActivity.this);
 	        
 	      autotext=(AutoCompleteTextView)findViewById(R.id.autotext);
 	      autotext.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
@@ -94,7 +104,7 @@ public class MainActivity extends Activity {
 
       			//设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this, 
-        android.R.layout.simple_dropdown_item_1line,  d.searchTips(contentStr));
+        android.R.layout.simple_dropdown_item_1line,  d.searchTips(maindict,contentStr));
                 //设置AutoCompleteTextView的Adapter
                 autotext.setAdapter(adapter);
                
@@ -135,15 +145,24 @@ public class MainActivity extends Activity {
   		TextView text= (TextView) findViewById(R.id.searchResult);
   	
   		text.setVisibility(View.VISIBLE); 
-    	
-        SingleWord w=d.getWord(word);
-        if(w==null)
+  		
+    	String wordOutput="";
+    	for(int i=0;i<dictlists.length;i++)
+    	{
+    		SingleWord w=d.getWord(dictlists[i],word);
+    		if(w!=null)
+    		{
+    			wordOutput+=w.content+"\r\n\r\n";
+    		}
+    	}
+        
+        if(wordOutput.isEmpty())
         {
         	text.setText(R.string.word_not_find);
         }
         else
         {
-        	text.setText(w.content);
+        	text.setText(wordOutput);
         }
     }
       
