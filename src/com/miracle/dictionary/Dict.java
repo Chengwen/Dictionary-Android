@@ -12,12 +12,6 @@ import android.util.Log;
 import android.widget.AutoCompleteTextView;
 
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
 public class Dict
 {
 	private DBHelper helper;
@@ -25,12 +19,6 @@ public class Dict
 	private Context context=null;
 	private String currOpen=null;
  	private String[] dictlists;//all dict database
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public String currDict;
 	
@@ -40,23 +28,9 @@ public class Dict
 	
 	public int status;
 	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public Dict(){
 
 	}
-
-	/**
-	 * get similar word
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public List<String> searchTips(String word) {
 		
@@ -117,23 +91,9 @@ public class Dict
        
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public void getDictInfo() {
 		// TODO implement me	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	public boolean openDict(Context context) {
 
@@ -162,13 +122,6 @@ public class Dict
 		db = helper.getWritableDatabase();
 		return true;	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public boolean closeDict() {
 		// TODO implement me
