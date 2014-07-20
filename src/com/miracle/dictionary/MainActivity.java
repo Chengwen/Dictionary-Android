@@ -21,14 +21,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import com.google.android.gms.ads.*;
 
 public class MainActivity extends Activity {
 
  	private  AutoCompleteTextView autotext;
  	private Button cancel;
  	private com.miracle.dictionary.Dict d;
+ 	private AdView adView;
+ 	
     protected void onCreate(Bundle savedInstanceState) {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -123,6 +128,32 @@ public class MainActivity extends Activity {
 	      }
 	    });
    	
+
+
+	    
+
+	    // 创建adView。
+	    adView = new AdView(this);
+	    adView.setAdUnitId("ca-app-pub-3568858304593155/9069825423");
+	    adView.setAdSize(AdSize.BANNER);
+
+	    // 查询LinearLayout，假设其已指定
+	    // 属性android:id="@+id/mainLayout"。
+	    LinearLayout layout = (LinearLayout)findViewById(R.id.LinearLayout1);
+
+	    // 在其中添加adView。
+	    layout.addView(adView);
+
+	    // 启动一般性请求。
+	    //AdRequest adRequest = new AdRequest.Builder().build();
+	    AdRequest adRequest = new AdRequest.Builder()
+	    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)       // 模拟器
+	    .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4") // 我的Galaxy Nexus测试手机
+	    .build();
+	    
+	    // 在adView中加载广告请求。
+	    adView.loadAd(adRequest);
+	    
     }
 
     @Override
@@ -139,6 +170,24 @@ public class MainActivity extends Activity {
         EasyTracker.getInstance(this).activityStop(this);  // Add this method.
       }
 
+      @Override
+      public void onPause() {
+        adView.pause();
+        super.onPause();
+      }
+
+      @Override
+      public void onResume() {
+        super.onResume();
+        adView.resume();
+      }
+
+      @Override
+      public void onDestroy() {
+        adView.destroy();
+        super.onDestroy();
+      }
+      
     private void onSearch(String word)
     {
     	
