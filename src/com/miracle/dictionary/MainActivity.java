@@ -127,29 +127,25 @@ public class MainActivity extends Activity {
 	        autotext.setText("");            //按钮按下的处理部分
 	      }
 	    });
-   	
-
-
-	    
 
 	    // 创建adView。
 	    adView = new AdView(this);
 	    adView.setAdUnitId("ca-app-pub-3568858304593155/9069825423");
-	    adView.setAdSize(AdSize.BANNER);
+	    adView.setAdSize(AdSize.SMART_BANNER);
 
 	    // 查询LinearLayout，假设其已指定
 	    // 属性android:id="@+id/mainLayout"。
-	    LinearLayout layout = (LinearLayout)findViewById(R.id.LinearLayout1);
+	    LinearLayout layout = (LinearLayout)findViewById(R.id.LinearLayout222);
 
 	    // 在其中添加adView。
 	    layout.addView(adView);
 
 	    // 启动一般性请求。
-	    //AdRequest adRequest = new AdRequest.Builder().build();
-	    AdRequest adRequest = new AdRequest.Builder()
+	    AdRequest adRequest = new AdRequest.Builder().build();
+	    /*AdRequest adRequest = new AdRequest.Builder()
 	    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)       // 模拟器
-	    .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4") // 我的Galaxy Nexus测试手机
-	    .build();
+	    .addTestDevice("35084AEE12F6A72B") // 我的Galaxy Nexus测试手机
+	    .build();*/
 	    
 	    // 在adView中加载广告请求。
 	    adView.loadAd(adRequest);

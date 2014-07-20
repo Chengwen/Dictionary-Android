@@ -1,6 +1,7 @@
 package com.miracle.dictionary;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class Dict
     		
 			openDict(dictlists[i]);
 			
-			Cursor c = db.rawQuery("SELECT * FROM Words where word like '"+word+"%' Limit 20", null);
+			Cursor c = db.rawQuery("SELECT * FROM Words where word like '"+word+"%' Limit 40", null);
 	        while (c.moveToNext()) {
 	        	
 	        	words.add(c.getString(c.getColumnIndex("word")));
@@ -50,8 +51,9 @@ public class Dict
 	        words.clear();
 	        words.addAll(h);
 	        
-	        if(words.size()>=10)
+	        if(words.size()>=20)
 	        {
+	        	Collections.sort(words, String.CASE_INSENSITIVE_ORDER);
 	            return words; 
 	        }
     	}
