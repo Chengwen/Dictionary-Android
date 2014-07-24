@@ -29,7 +29,6 @@
             android:imeOptions="actionSearch"
             android:inputType="text" />
 
-           <!-- android:background="@layout/rounded_editview" -->
 
         <Button
             android:id="@+id/cancel"
